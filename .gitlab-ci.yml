@@ -1,0 +1,12 @@
+compile-latex:
+  image: 'texlive/texlive:latest'
+  stage: build
+  needs: []
+  script:
+    - cd paper
+    - latexmk -bibtex -pdf iclr2024_conference.tex
+  artifacts:
+    paths:
+      - paper/iclr2024_conference.pdf
+    expire_in: 1 week
+
