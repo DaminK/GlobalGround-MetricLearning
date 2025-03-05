@@ -236,7 +236,6 @@ def get_cells_by_patients(adata_path,patient_col="donor_id",label_col="reported_
 
 #TODO check diffs between cells load funcs of patient
 def get_cells_by_patients_2(adata_path,patient_col="donor_id",label_col="reported_diseases",subsample_patient_ratio=0.25,n_cells=1000,pca_components=None,filter_genes=False,**kwargs):
-    global adata
     adata = sc.read_h5ad(adata_path)
 
     string_class_labels = np.unique(adata.obs[label_col])
@@ -244,10 +243,13 @@ def get_cells_by_patients_2(adata_path,patient_col="donor_id",label_col="reporte
     #detect low variable genes
     if filter_genes:
         gene_var = np.var(adata.X.toarray(),axis=0)
+        org_genes = len(gene_var)
 
         #filter
         thresh = np.mean(gene_var) #TODO make this not hardcoded and arbitrary
         adata = adata[:,gene_var >thresh]
+        filtered_genes = np.asarray([gene_var >thresh]).sum()
+        print(f"Removed {org_genes - filtered_genes} low variance genes out of {org_genes} genes")
 
 
     distributions = []

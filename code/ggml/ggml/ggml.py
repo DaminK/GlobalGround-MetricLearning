@@ -111,4 +111,4 @@ def ggml(train_dataset,alpha=1,lambda_=1,rank_k=None,neigh_t=None,dia_only=False
             print(f"Compute all OT distances after {i} iterations")
             D = full_dataset_for_plotting.compute_OT_on_dists(w = w_theta.clone().detach().numpy()) 
 
-        return w_theta, times
+    return w_theta, times
