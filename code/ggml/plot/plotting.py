@@ -104,7 +104,7 @@ def plot_transport_plan(plan,ax=None):
     sns.heatmap(plan)
     plt.show()
 
-def plot_emb(dists,method='umap',precomputed_emb=None,colors=None,symbols=None,ax=None, Cluster_ID=None,title=None,cmap="tab20",save_path=None,verbose=True,legend='Top',s=15,hue_order=None,annotation=None, annotation_image_path=None):
+def plot_emb(dists,method='umap',precomputed_emb=None,colors=None,symbols=None,ax=None, Cluster_ID=None,title=None,cmap="tab20",save_path=None,verbose=True,legend='Top',s=15,hue_order=None,annotation=None, linewidth=0.02,annotation_image_path=None):
     if precomputed_emb is None:
         if method == 'umap':
             with warnings.catch_warnings():
@@ -167,7 +167,7 @@ def plot_emb(dists,method='umap',precomputed_emb=None,colors=None,symbols=None,a
         fig = plt.figure(figsize=(5,5)) if annotation_image_path is None else plt.figure(figsize=(30,7))
         #ax = fig.add_subplot(111, aspect='equal')
 
-    ax = sns.scatterplot(df_embed, x='x',y='y',edgecolor="white",alpha=1.0,s=s,linewidth=.02,hue='Classes' if colors is not None else None, style='Condition' if symbols is not None else None, size="Type" if Cluster_ID is not None else None,sizes=type_to_size if Cluster_ID is not None else None, ax=ax,palette=cmap, legend = False if not legend else 'auto',hue_order=hue_order)
+    ax = sns.scatterplot(df_embed, x='x',y='y',edgecolor="white",alpha=1.0,s=s,linewidth=linewidth,hue='Classes' if colors is not None else None, style='Condition' if symbols is not None else None, size="Type" if Cluster_ID is not None else None,sizes=type_to_size if Cluster_ID is not None else None, ax=ax,palette=cmap, legend = False if not legend else 'auto',hue_order=hue_order)
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
 

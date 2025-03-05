@@ -82,6 +82,7 @@ def create_triplets(distributions,labels):
     return triplets
 
 def create_t_triplets(distributions,labels,t=5,**kwargs):
+    print(f"passed neighs: {t}")
     labels= np.asarray(labels)
     triplets = []
     replace = any(np.unique(labels,return_counts=True)[1]<t)
