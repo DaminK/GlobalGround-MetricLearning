@@ -41,7 +41,7 @@ def plot_distribution(dists,labels,projection= lambda x:x,title="",legend=True):
         i += 1
 
     df_projected= pd.concat(dfList_projected, axis=0)
-    plt.figure(figsize=(6,1))
+    plt.figure(figsize=(6,6))
     ax = sns.scatterplot(df_projected,x='x',y='y',hue="class",style='dist',alpha=0.5)
     
     #ax.set_ylim(-0.01, 0.01)
