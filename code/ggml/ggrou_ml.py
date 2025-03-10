@@ -13,6 +13,7 @@ def ggml(dataloader,a=10,l=0.1,k=5,lr=0.01,norm='fro',max_iterations=30,diagonal
     dim = next(iter(dataloader))[0].shape[-1]
     if k is None:
         k = dim
+        #TODO warning, for rank 1 subsequent computation interprets 1d vector as diagonal
 
     if verbose:
         print(f"Running GGML with alpha: {a}, lambda: {l}, rank: {k}")
@@ -20,11 +21,12 @@ def ggml(dataloader,a=10,l=0.1,k=5,lr=0.01,norm='fro',max_iterations=30,diagonal
     alpha = torch.scalar_tensor(a)
     lambda_ = torch.scalar_tensor(l) 
 
-    #TODO warning, for rank 1 subsequent computation interprets 1d vector as diagonal
+    
+    torch.manual_seed(42)
     if diagonal:
-        w_theta =  torch.distributions.uniform.Uniform(-1,1).sample([dim]) if random_init==True else  torch.ones((dim))
+        w_theta =  torch.distributions.uniform.Uniform(-1,1).sample([dim]) if random_init else  torch.ones((dim))
     else:
-        w_theta =  torch.distributions.uniform.Uniform(-1,1).sample([k,dim]) if random_init==True else torch.diag(torch.ones((dim)))[:k,:] 
+        w_theta =  torch.distributions.uniform.Uniform(-1,1).sample([k,dim]) if random_init else torch.diag(torch.ones((dim)))[:k,:] 
 
     w_theta.requires_grad_(requires_grad=True) 
     w_theta.retain_grad()
