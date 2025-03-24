@@ -1,0 +1,35 @@
+name: ggml_test
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - ipykernel
+  #- louvain
+  #- s_gd2
+  - pip:
+    - pyyaml
+    - tqdm
+    - scipy
+    - matplotlib
+    - seaborn
+    - umap-learn
+    - numpy
+    - pandas>=2.1.2
+    - scikit-learn
+    - gprofiler-official
+    - metric-learn
+    - pathlib
+    - pickleshare
+    - pot
+    - pydiffmap
+    - python-voi
+    #- s-gd2
+    - scanpy
+    - anndata
+    - scprep
+    - torch
+    - torchaudio
+    - torchvision
+
+prefix: ~/anaconda3/envs/ggml
