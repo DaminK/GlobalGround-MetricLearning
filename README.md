@@ -2,10 +2,12 @@ Global Ground Metric Learning
 ====================
 This repository provides the python implementation to reproduce the results of the AISTATS2025 paper "Global Ground Metric Learning with Applications to scRNA data" by Damin Kühn and Michael T. Schaub.
 
-To use the GGML method on your own data, please refer to the corresponding [python package](https://github.com/DaminK/ggml-ot) which you can install via pip:
-```terminal
-pip install ggml-ot
-```
+> [!NOTE]
+> To use the GGML method on your own data, refer to the [python package](https://github.com/DaminK/ggml-ot) which you can install via pip:
+> ```terminal
+> pip install ggml-ot
+> ```
+
 ## Abstract
 Optimal transport (OT) provides a robust framework for comparing probability distributions. Its effectiveness is significantly influenced by the choice of the underlying ground metric. Traditionally, the ground metric has either been (i) predefined, e.g., as a Euclidean metric, or (ii) learned in a supervised way, by utilizing labeled data to learn a suitable ground metric for enhanced task-specific performance.
 Yet, predefined metrics typically cannot account for the inherent structure and varying significance of different features in the data, and existing supervised ground metric learning methods often fail to generalize across multiple classes or are limited to distributions with shared supports.   
@@ -18,5 +20,5 @@ Tutorials on how to use GGML on synthetic or real-world scRNA data are provided 
 The classification and clustering experiments are provided in `code/reproduce_experiments/`. Use the python script to compute the results and the Jupyter notebooks to visualize the results.
 
 ## Setup
-To set-up the environment you can use the env file provided in `code/env/ggml.yaml`.
+To set-up the environment you can use the env file `ggml.yaml`.
 
